@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>-->
+    <script src="../js/vue.js"></script>
+    <style>
+        .red{
+            background-color: red;
+        }
+        .yellow{
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        {{myname}}
+        <button @click="handClick()">确定</button>
+        <!-- v-on 绑定事件的指令 -->
+        <button v-on:click="handClick()">确定1</button>
+
+        <div v-show="isShow">我是动态的隐藏和显示</div>
+
+        <div v-if="isCreated">我是动态创建和删除</div>
+
+        <!-- v-bind 动态绑定 -->
+        <div v-bind:class="isColor?'red':'yellow'">动态切换背景色</div>
+        <div :class="isColor?'red':'yellow'">动态切换背景色1</div>
+
+        <!-- v-for 遍历数组的指令 -->
+        <ul>
+            <li v-for="(item,index) in datalist">
+                {{item}}------{{index}}
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el:"#box",
+            data:{
+                myname:"zhangsan",
+                isShow:true,
+                isCreated:true,
+                isColor:true,
+                datalist:['aaaaa','bbbbb','ccc','dddddd']
+            },
+            methods:{
+                handClick(){
+                    this.myname="xiaoming"
+                    this.isShow=!this.isShow
+                    this.isCreated=!this.isCreated
+                    this.isColor=!this.isColor
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
